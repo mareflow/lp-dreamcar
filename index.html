@@ -191,14 +191,14 @@ Câmbio automático, revisão, freios e suspensão. Atendimento humanizado, pre�
         
         /* Mobile Adjustments for jeep boxes */
         @media (max-width: 768px) {
-            .jeep-box { max-width: 180px; padding: 6px 10px; }
-            .jeep-box .title { font-size: 0.75rem; }
-            .jeep-box .desc { font-size: 0.7rem; }
-            .jeep-line-tr, .jeep-line-tl, .jeep-line-br, .jeep-line-bl { width: calc(var(--line-len, 80px) * 0.5); }
-            .jeep-marker.tr .jeep-box { margin-bottom: calc(var(--line-len, 80px) * 0.35); margin-left: calc(var(--line-len, 80px) * 0.35); }
-            .jeep-marker.tl .jeep-box { margin-bottom: calc(var(--line-len, 80px) * 0.35); margin-right: calc(var(--line-len, 80px) * 0.35); }
-            .jeep-marker.br .jeep-box { margin-top: calc(var(--line-len, 80px) * 0.35); margin-left: calc(var(--line-len, 80px) * 0.35); }
-            .jeep-marker.bl .jeep-box { margin-top: calc(var(--line-len, 80px) * 0.35); margin-right: calc(var(--line-len, 80px) * 0.35); }
+            .jeep-box { max-width: 150px; padding: 5px 8px; }
+            .jeep-box .title { font-size: 0.65rem; }
+            .jeep-box .desc { font-size: 0.6rem; }
+            .jeep-line-tr, .jeep-line-tl, .jeep-line-br, .jeep-line-bl { display: none; }
+            .jeep-marker.tr .jeep-box { bottom: 15px; left: -25px; margin: 0; }
+            .jeep-marker.tl .jeep-box { bottom: 15px; right: -25px; margin: 0; }
+            .jeep-marker.br .jeep-box { top: 15px; left: -25px; margin: 0; }
+            .jeep-marker.bl .jeep-box { top: 15px; right: -25px; margin: 0; }
             .jeep-marker::after { width: 8px; height: 8px; }
         }
 
