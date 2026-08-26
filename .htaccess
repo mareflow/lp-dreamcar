@@ -1,0 +1,46 @@
+# Apache Configuration for Static Website on HostGator / cPanel
+
+DirectoryIndex index.html index.php
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Redirecionar URLs com .html para URL limpa sem a extensao (Redirecionamento 301)
+  # Exemplo: /jeep.html -> /jeep ou /index.html -> /
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [R=301,L,NE]
+
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # 2. Servir a rota /jeep apontando para jeep.html ou jeep/index.html
+  RewriteRule ^jeep/?$ jeep.html [L]
+
+  # 3. Reescrever URLs limpas para seus respectivos arquivos .html se existirem
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Content-Type "text/html; charset=UTF-8" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+</IfModule>
+
+# MIME Types with UTF-8
+<IfModule mod_mime.c>
+  AddType "text/html; charset=UTF-8" .html
+  AddType "text/css; charset=UTF-8" .css
+  AddType "application/javascript; charset=UTF-8" .js
+  AddType image/png .png
+  AddType image/jpeg .jpeg .jpg
+  AddType image/svg+xml .svg
+</IfModule>
+
+# Disable ModSecurity filtering on static assets if supported
+<IfModule mod_security.c>
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+</IfModule>
